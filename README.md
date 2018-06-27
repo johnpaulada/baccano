@@ -34,5 +34,8 @@ On the browser:
 ### Using the library
 > Docs under works
 
+## Notes
+- I named the library Baccano because when I thought about trains and railways, I thought of the Baccano anime. [@egoist](https://github.com/egoist) is not the only one fond of anime references LOL.
+
 ## License
 MIT
