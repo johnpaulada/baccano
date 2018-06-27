@@ -1,0 +1,22 @@
+{
+  "name": "baccano",
+  "version": "1.0.0",
+  "description": "Railway-oriented programming helper library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "rollup -c"
+  },
+  "author": "John Paul Ada",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "rollup-plugin-babel": "^3.0.5",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-uglify-es": "^0.0.1"
+  },
+  "peerDependencies": {
+    "@johnpaulada/maybe": "^2.1.2"
+  }
+}
