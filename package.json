@@ -18,5 +18,17 @@
   },
   "peerDependencies": {
     "@johnpaulada/maybe": "^2.1.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnpaulada/baccano.git"
+  },
+  "keywords": [
+    "railway-oriented-programming",
+    "javascript"
+  ],
+  "bugs": {
+    "url": "https://github.com/johnpaulada/baccano/issues"
+  },
+  "homepage": "https://github.com/johnpaulada/baccano#readme"
 }
