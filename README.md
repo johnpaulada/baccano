@@ -6,8 +6,8 @@ A railway-oriented programming helper library.
 [![forthebadge](https://forthebadge.com/images/badges/powered-by-electricity.svg)](https://forthebadge.com)
 
 [![](https://data.jsdelivr.com/v1/package/npm/baccano/badge)](https://www.jsdelivr.com/package/npm/baccano)
-[![npm](https://img.shields.io/npm/dm/baccano.svg?longCache=true&style=for-the-badge)](https://www.jsdelivr.com/package/npm/baccano)
-[![npm](https://img.shields.io/npm/v/baccano.svg?longCache=true&style=for-the-badge)](https://www.jsdelivr.com/package/npm/baccano)
+[![npm](https://img.shields.io/npm/dm/baccano.svg?longCache=true&style=for-the-badge)](https://www.npmjs.com/package/baccano)
+[![npm](https://img.shields.io/npm/v/baccano.svg?longCache=true&style=for-the-badge)](https://www.npmjs.com/package/baccano)
 
 ## Intro to Railway-oriented Programming
 The term was coined by Scott Wlaschin of F# for Fun and Profit. [Here's his talk on the subject](https://fsharpforfunandprofit.com/rop/).
