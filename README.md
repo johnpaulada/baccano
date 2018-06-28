@@ -5,12 +5,12 @@ A railway-oriented programming helper library.
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/powered-by-electricity.svg)](https://forthebadge.com)
 
-[![](https://data.jsdelivr.com/v1/package/npm/baccano/badge)](https://www.jsdelivr.com/package/npm/baccano)
 [![npm](https://img.shields.io/npm/dm/baccano.svg?longCache=true&style=for-the-badge)](https://www.npmjs.com/package/baccano)
 [![npm](https://img.shields.io/npm/v/baccano.svg?longCache=true&style=for-the-badge)](https://www.npmjs.com/package/baccano)
+[![](https://data.jsdelivr.com/v1/package/npm/baccano/badge)](https://www.jsdelivr.com/package/npm/baccano)
 
 ## Intro to Railway-oriented Programming
-The term was coined by Scott Wlaschin of F# for Fun and Profit. [Here's his talk on the subject](https://fsharpforfunandprofit.com/rop/).
+The term was coined by Scott Wlaschin of F# for Fun and Profit. [Here's his talk on the subject](https://fsharpforfunandprofit.com/rop/). This method of programming allows us to deal with errors functionally in our applications. It involves having two paths (or tracks) if you will, one is the success path, and one is the error path. You start with the success path and when an error occurs, expected or not, you move to the error path. It's easier to understand if you try it out. 
 
 ## Getting Started
 
