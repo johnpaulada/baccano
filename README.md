@@ -32,7 +32,36 @@ On the browser:
 ```
 
 ### Using the library
-> Docs under works
+
+```javascript
+
+// Define Errors
+import { Success, SomeError, compose, fromUnary } from 'baccano'
+
+const DIVISON_BY_ZERO = Symbol.for('DIVISION_BY_ZERO')
+
+const divideBy = n => x => {
+  if (n === 0) {
+    return SomeError(DIVISON_BY_ZERO, "Cannot divide by zero.")
+  } else {
+    return Success(n / x)
+  }
+}
+
+const plusOne = x => {
+  return Success(x + 1)
+}
+
+(async () => {
+  const compatibleDivideBy = fromUnary(divideBy(0))
+  const compatiblePlusOne = fromUnary(plusOne)
+  const pipeline = compose(compatiblePlusOne, compatibleDivideBy, compatiblePlusOne)
+  const result = await pipeline(2)
+
+  console.log(result.value)
+  console.log(result.errors)
+})()
+```
 
 ## Notes
 - I named the library Baccano because when I thought about trains and railways, I thought of the Baccano anime. [@egoist](https://github.com/egoist) is not the only one fond of anime references LOL.

@@ -1,21 +1,59 @@
-import Maybe from '@johnpaulada/maybe'
+const SUCCESS = Symbol.for('SUCCESS')
+const UNSPECIFIED_ERROR = Symbol.for('UNSPECIFIED_ERROR')
 
-const compose = (...fns) => x => {
-  const {value, error} = fns.reduce((result, fn) => {
-    const {value, error} = result
+const SomeError = (errorType, message) => ({
+  value: () => message,
+  type: () => errorType
+})
 
+const Errors = errors => ({
+  value: () => errors,
+  concat: error => Errors([...errors, error])
+})
+
+const Success = x => ({
+  value: () => x,
+  type: () => SUCCESS
+})
+
+const compose = (...fns) => async x => {
+  let result = [Success(x), Errors([])]
+
+  for (const fn of fns) {
+    result = await fn(result)
+  }
+
+  const [value, errors] = result
+
+  const resolved = {
+    value: value.value(),
+    errors: errors.value().map(error => error.value())
+  }
+
+  return resolved
+}
+
+const fromUnary = fn => {
+  return async ([success, errors]) => {
     try {
-      return {value: value.map(fn), error}
+      const response = await fn(success.value())
+      const type = response.type()
+      
+      if (type === SUCCESS) {
+        return [response, errors]
+      } else {
+        return [success, errors.concat(response)]
+      }
+      
     } catch(err) {
-      return {value: Maybe.Nothing(), error: error.map(errors => [...errors, err.message])}
+      return [success, errors.concat(SomeError(UNSPECIFIED_ERROR, err.message))]
     }
-  }, {value: Maybe.of(x), error: Maybe.of([])})
-
-  const actualValues = { value: value.reduce(x => x), error: error.reduce(x => x) }
-
-  return actualValues
+  }
 }
 
 export {
-  compose
+  compose,
+  fromUnary,
+  Success,
+  SomeError
 }
