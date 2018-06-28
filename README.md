@@ -18,19 +18,19 @@ To use the library, first import it:
 
 In Node:
 ```javascript
-const { compose } = require('baccano')
+const { compose, fromUnary, SomeError, Success } = require('baccano')
 ```
 
 As ES Module:
 ```javascript
-import { compose } from 'baccano'
+import { compose, fromUnary, SomeError, Success } from 'baccano'
 ```
 
 On the browser:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/baccano/baccano.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/baccano@2.1.0/baccano.min.js"></script>
 <script>
-    const { compose } = Baccano
+    const { compose, fromUnary, SomeError, Success } = Baccano
 </script>
 ```
 
