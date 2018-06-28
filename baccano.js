@@ -27,7 +27,7 @@ const compose = (...fns) => async x => {
 
   const resolved = {
     value: value.value(),
-    errors: errors.value().map(error => error.value())
+    errors: errors.value().map(error => ({message: error.value(), type: error.type()}))
   }
 
   return resolved

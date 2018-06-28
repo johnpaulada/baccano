@@ -36,8 +36,8 @@ On the browser:
 
 ### Using the library
 
-#### Complete Code
-Here is the complete code:
+#### Complete Example Code
+Here is the complete example code:
 
 ```javascript
 
@@ -75,7 +75,7 @@ const plusOne = x => {
   console.log(result.value) // 4
 
   // Display errors
-  console.log(result.errors) // [ 'Cannot divide by zero.' ]
+  console.log(result.errors) // [ { message: 'Cannot divide by zero.', type: Symbol(DIVISON_BY_ZERO) } ]
 })()
 ```
 
