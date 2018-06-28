@@ -7,6 +7,9 @@ A railway-oriented programming helper library.
 
 [![](https://data.jsdelivr.com/v1/package/npm/baccano/badge)](https://www.jsdelivr.com/package/npm/baccano)
 
+## Intro to Railway-oriented Programming
+The term was coined by Scott Wlaschin of F# for Fun and Profit. [Here's his talk on the subject](https://fsharpforfunandprofit.com/rop/).
+
 ## Getting Started
 
 ### Importing the library
@@ -33,11 +36,15 @@ On the browser:
 
 ### Using the library
 
+#### Complete Code
+Here is the complete code:
+
 ```javascript
 
-// Define Errors
-import { Success, SomeError, compose, fromUnary } from 'baccano'
+// Import library
+import { compose, fromUnary, SomeError, Success } from 'baccano'
 
+// Define Errors
 const DIVISON_BY_ZERO = Symbol.for('DIVISION_BY_ZERO')
 
 const divideBy = n => x => {
@@ -53,13 +60,22 @@ const plusOne = x => {
 }
 
 (async () => {
-  const compatibleDivideBy = fromUnary(divideBy(0))
+
+  // Take unary functions and convert them to compatible functions
+  const compatibleDivideByZero = fromUnary(divideBy(0))
   const compatiblePlusOne = fromUnary(plusOne)
-  const pipeline = compose(compatiblePlusOne, compatibleDivideBy, compatiblePlusOne)
+
+  // Create pipeline of functions
+  const pipeline = compose(compatiblePlusOne, compatibleDivideByZero, compatiblePlusOne)
+
+  // Get result of the pipeline
   const result = await pipeline(2)
 
-  console.log(result.value)
-  console.log(result.errors)
+  // Display end value
+  console.log(result.value) // 4
+
+  // Display errors
+  console.log(result.errors) // [ 'Cannot divide by zero.' ]
 })()
 ```
 
