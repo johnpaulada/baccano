@@ -46,7 +46,7 @@ Features should not be the only things to be considered when planning software. 
 const DIVISON_BY_ZERO = Symbol.for('DIVISION_BY_ZERO')
 ```
 
-### Define Functions
+#### Define Functions
 Now we'll define the functions that we will use. In Railway-Oriented Programming, a function should either return a success with the value, or some error with the error message. This would be easy in type-safe functional programming languages but that is not the case with JavaScript so we'll need some helpers from the library.
 
 ```javascript
