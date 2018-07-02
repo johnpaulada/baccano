@@ -30,7 +30,7 @@ import { compose, fromUnary, SomeError, Success } from 'baccano'
 
 On the browser:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/baccano@2.1.0/baccano.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/baccano@2.1.1/baccano.min.js"></script>
 <script>
     const { compose, fromUnary, SomeError, Success } = Baccano
 </script>
@@ -73,6 +73,48 @@ In this case, we create a function `divideBy` which takes a number and returns a
 
 The `plusOne` function just takes a number and returns a `Success` with the number incremented by one.
 
+#### Convert to ROP-compatible functions
+If you noticed, our functions accept a single value and return a single value, which could either be success or error.
+In Railway-Oriented Programming, functions should accept two values and return two values, which represent the happy/success path and the error path. So we have to convert them into compatible functions. For that, we need the `fromUnary` function.
+
+```javascript
+import { fromUnary, SomeError, Success } from 'baccano'
+
+const compatibleDivideByZero = fromUnary(divideBy(0))
+const compatiblePlusOne = fromUnary(plusOne)
+```
+
+Now we can use these functions in our pipeline.
+
+#### Composing functions into a pipeline
+Now that we have compatible functions, let's compose them into a single function using the `pipeline` function.
+
+```javascript
+import { fromUnary, pipeline, SomeError, Success } from 'baccano'
+
+const pipeline = compose(compatiblePlusOne, compatibleDivideByZero, compatiblePlusOne)
+```
+
+This `pipeline` function is an asynchronous function which accepts a value and returns a Promise that resolves into the value after it has been run through the series of functions.
+
+We run the pipeline like this:
+
+```javascript
+(async () => {
+
+  // Get result of the pipeline
+  const result = await pipeline(2)
+
+  // Display end value
+  console.log(result.value) // 4
+
+  // Display errors
+  console.log(result.errors) // [ { message: 'Cannot divide by zero.', type: Symbol(DIVISON_BY_ZERO) } ]
+})()
+```
+
+That's it for this example!
+
 #### Complete Example Code
 Here is the complete example code:
 
@@ -80,6 +122,7 @@ Here is the complete example code:
 
 // Import library
 import { compose, fromUnary, SomeError, Success } from 'baccano'
+// or const { compose, fromUnary, SomeError, Success } = Baccano
 
 // Define Errors
 const DIVISON_BY_ZERO = Symbol.for('DIVISION_BY_ZERO')
@@ -96,14 +139,14 @@ const plusOne = x => {
   return Success(x + 1)
 }
 
+// Take unary functions and convert them to compatible functions
+const compatibleDivideByZero = fromUnary(divideBy(0))
+const compatiblePlusOne = fromUnary(plusOne)
+
+// Create pipeline of functions
+const pipeline = compose(compatiblePlusOne, compatibleDivideByZero, compatiblePlusOne)
+
 (async () => {
-
-  // Take unary functions and convert them to compatible functions
-  const compatibleDivideByZero = fromUnary(divideBy(0))
-  const compatiblePlusOne = fromUnary(plusOne)
-
-  // Create pipeline of functions
-  const pipeline = compose(compatiblePlusOne, compatibleDivideByZero, compatiblePlusOne)
 
   // Get result of the pipeline
   const result = await pipeline(2)
@@ -121,6 +164,8 @@ const plusOne = x => {
 
 ## Roadmap
 - [x] Handling Asynchronous functions
+- [ ] Parallel execution
+- [ ] Lazy execution
 
 ## License
 MIT
