@@ -87,10 +87,10 @@ const compatiblePlusOne = fromUnary(plusOne)
 Now we can use these functions in our pipeline.
 
 #### Composing functions into a pipeline
-Now that we have compatible functions, let's compose them into a single function using the `pipeline` function.
+Now that we have compatible functions, let's compose them into a single function using the `compose` function.
 
 ```javascript
-import { fromUnary, pipeline, SomeError, Success } from 'baccano'
+import { fromUnary, compose, SomeError, Success } from 'baccano'
 
 const pipeline = compose(compatiblePlusOne, compatibleDivideByZero, compatiblePlusOne)
 ```
