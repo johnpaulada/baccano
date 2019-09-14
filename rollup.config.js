@@ -6,7 +6,7 @@ export default {
   input: 'baccano.js',
   output: [
     {
-      file: 'index.js',
+      file: 'index.min.js',
       format: 'cjs'
     },
     {
