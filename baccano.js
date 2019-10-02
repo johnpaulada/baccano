@@ -33,6 +33,8 @@ const compose = (...fns) => async x => {
   return resolved
 }
 
+const pipeline = (...fns) => compose.apply(this, fns.reverse())
+
 const fromUnary = fn => {
   return async ([success, errors]) => {
     try {
@@ -53,6 +55,7 @@ const fromUnary = fn => {
 
 export {
   compose,
+  pipeline,
   fromUnary,
   Success,
   SomeError
