@@ -36,6 +36,12 @@ On the browser:
 </script>
 ```
 
+### Polyfills
+
+This library needs `async/await` in order to work properly. If you need to support older browsers, please make sure to include the corresponding polyfills in your app. 
+
+An easy solution would be installing [babel-polyfill](https://babeljs.io/docs/en/babel-polyfill)
+
 ### Using the library
 Let's learn how to use the library by creating a pipeline of mathematical operations.
 
