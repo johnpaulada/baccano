@@ -36,6 +36,12 @@ On the browser:
 </script>
 ```
 
+### Polyfills
+
+This library needs `async/await` in order to work properly. If you need to support older browsers, please make sure to include the corresponding polyfills in your app. 
+
+An easy solution would be installing [babel-polyfill](https://babeljs.io/docs/en/babel-polyfill)
+
 ### Using the library
 Let's learn how to use the library by creating a pipeline of mathematical operations.
 
@@ -87,10 +93,10 @@ const compatiblePlusOne = fromUnary(plusOne)
 Now we can use these functions in our pipeline.
 
 #### Composing functions into a pipeline
-Now that we have compatible functions, let's compose them into a single function using the `pipeline` function.
+Now that we have compatible functions, let's compose them into a single function using the `compose` function.
 
 ```javascript
-import { fromUnary, pipeline, SomeError, Success } from 'baccano'
+import { fromUnary, compose, SomeError, Success } from 'baccano'
 
 const pipeline = compose(compatiblePlusOne, compatibleDivideByZero, compatiblePlusOne)
 ```
